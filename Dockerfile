@@ -13,6 +13,6 @@ COPY tsconfig.json .
 # COPY public public
 
 ENV NODE_ENV production
-CMD ["npm", "start"]
+CMD ["bun", "start"]
 
 EXPOSE 3000
