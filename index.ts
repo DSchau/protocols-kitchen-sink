@@ -4,13 +4,13 @@ import { cors } from '@elysiajs/cors'
 import { trpc } from '@elysiajs/trpc'
 import { yoga } from '@elysiajs/graphql-yoga'
 
-import http from './api/http'
-import graphql from './api/graphql'
+import { http } from './api/http'
+import { graphql } from './api/graphql'
 import { router as trpcRouter } from './api/trpc';
-import grpc from './api/grpc';
+import { grpc } from './api/grpc';
 import { version } from './api/version'
 
-export default new Elysia({
+const app = new Elysia({
   serve: {
     hostname: process.env.NODE_ENV === 'production' ? '0.0.0.0' : ''
   }
@@ -27,7 +27,12 @@ export default new Elysia({
   }))
   .use(yoga(graphql))
   .ws('/ws', {
-    message(ws: WebSocket, message: string) {
+    message(ws, message) {
       ws.send(message)
+    },
+    open() {
+      console.log('We have an open web socket')
     }
   })
+
+export default app

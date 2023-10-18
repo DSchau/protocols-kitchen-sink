@@ -1,4 +1,4 @@
-export default {
+export const graphql = {
     typeDefs: /* GraphQL */ `
     type Query {
       hello(name: String!): String!
