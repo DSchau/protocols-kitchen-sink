@@ -1,0 +1,28 @@
+{
+  "name": "protocols-example",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch run index.ts"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^0.7.1",
+    "@elysiajs/graphql-yoga": "^0.7.0",
+    "@elysiajs/swagger": "^0.7.3",
+    "@elysiajs/trpc": "^0.7.0",
+    "@stricjs/router": "^5.0.3",
+    "@stricjs/utils": "^1.5.7",
+    "@trpc/client": "^10.40.0",
+    "@trpc/server": "^10.40.0",
+    "elysia": "^0.7.17",
+    "graphql": "^16.8.1",
+    "graphql-yoga": "^5.0.0",
+    "zod": "^3.22.4"
+  }
+}
