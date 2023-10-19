@@ -15,4 +15,4 @@ COPY tsconfig.json .
 ENV NODE_ENV production
 CMD ["bun", "start"]
 
-EXPOSE 3000
+EXPOSE 3000 8080
