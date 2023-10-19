@@ -28,11 +28,12 @@ const app = new Elysia({
   .use(yoga(graphql))
   .ws('/ws', {
     message(ws, message) {
-      ws.send(message)
-    },
-    open() {
-      console.log('We have an open web socket')
+        ws.send({
+            message,
+            time: Date.now()
+        })
     }
   })
+  .listen(process.env.WEBSOCKET_PORT || 8080)
 
-export default app
+  export default app
