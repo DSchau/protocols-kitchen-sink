@@ -4,10 +4,13 @@ import { cors } from '@elysiajs/cors'
 import { trpc } from '@elysiajs/trpc'
 import { yoga } from '@elysiajs/graphql-yoga'
 
-import { http } from './api/http'
 import { graphql } from './api/graphql'
+
+import { router as httpRouter } from './api/http/'
 import { router as trpcRouter } from './api/trpc';
-import { grpc } from './api/grpc';
+import { router as grpcRouter } from './api/grpc/';
+import { router as soapRouter } from './api/soap'
+
 import { version } from './api/version'
 
 const app = new Elysia({
@@ -19,13 +22,15 @@ const app = new Elysia({
   .decorate('getDate', () => Date.now())
   .use(swagger())
   .use(cors())
-  .get('/', http)
   .get('/version', version)
-  .get('/grpc', grpc)
   .use(trpc(trpcRouter, {
     endpoint: '/trpc'
   }))
   .use(yoga(graphql))
+  .group('/grpc', grpcRouter as any) // TODO: Type correctly
+  .group('/http', httpRouter as any) // TODO: Type correctly
+  .group('/soap', soapRouter as any) // TODO: Type correctly
+  // NOTE: This /ws has to be last!
   .ws('/ws', {
     message(ws, message) {
         ws.send({
