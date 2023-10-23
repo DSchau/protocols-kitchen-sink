@@ -2,14 +2,12 @@ import { Elysia } from 'elysia'
 import { swagger } from '@elysiajs/swagger'
 import { cors } from '@elysiajs/cors'
 import { trpc } from '@elysiajs/trpc'
-import { yoga } from '@elysiajs/graphql-yoga'
-
-import { graphql } from './api/graphql'
 
 import { router as httpRouter } from './api/http/'
 import { router as trpcRouter } from './api/trpc';
 import { router as grpcRouter } from './api/grpc/';
-import { router as soapRouter } from './api/soap'
+import { router as soapRouter } from './api/soap/'
+import { router as graphqlRouter } from './api/graphql/'
 
 import { version } from './api/version'
 
@@ -26,7 +24,7 @@ const app = new Elysia({
   .use(trpc(trpcRouter, {
     endpoint: '/trpc'
   }))
-  .use(yoga(graphql))
+  .group('/graphql', graphqlRouter as any) // TODO: Type correctly
   .group('/grpc', grpcRouter as any) // TODO: Type correctly
   .group('/http', httpRouter as any) // TODO: Type correctly
   .group('/soap', soapRouter as any) // TODO: Type correctly

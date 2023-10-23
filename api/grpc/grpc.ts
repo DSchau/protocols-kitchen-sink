@@ -1,3 +1,7 @@
 export function grpc() {
-  return new Response('Hello world from gRPC')
+  const status = 501
+
+  return new Response(`${status}: Not Implemented`, {
+    status
+  })
 }
