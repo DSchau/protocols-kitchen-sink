@@ -9,6 +9,7 @@ RUN bun install --production
 
 COPY index.ts .
 COPY api api
+COPY lib lib
 COPY tsconfig.json .
 # COPY public public
 
