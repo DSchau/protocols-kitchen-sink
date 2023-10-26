@@ -1,3 +1,3 @@
 import { github } from "../http/github";
 
-export { github }
+export { github };
