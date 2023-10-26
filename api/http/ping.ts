@@ -1,6 +1,6 @@
 import { Context } from "elysia";
 
-export function http(context: Context) {
+export function ping(context: Context) {
   const { query } = context;
   if (query.trigger_error === "true") {
     return new Response(`500: Server Error`, {
