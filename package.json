@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "bun --watch run index.ts",
+    "format": "prettier --write '**/*.{ts,tsx}'",
     "start": "bun run index.ts"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "prettier": "^3.0.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -16,6 +18,7 @@
   "dependencies": {
     "@elysiajs/cors": "^0.7.1",
     "@elysiajs/graphql-yoga": "^0.7.0",
+    "@elysiajs/html": "^0.7.3",
     "@elysiajs/swagger": "^0.7.3",
     "@elysiajs/trpc": "^0.7.0",
     "@stricjs/router": "^5.0.3",

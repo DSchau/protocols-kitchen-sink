@@ -1,15 +1,15 @@
-import { DateTimeResolver, DateTimeTypeDefinition } from "graphql-scalars"
-import { github as api } from "../../lib/github"
+import { DateTimeResolver, DateTimeTypeDefinition } from "graphql-scalars";
+import { github as api } from "../../lib/github";
 
 export const graphql = {
-    typeDefs: /* GraphQL */ `
+  typeDefs: /* GraphQL */ `
     ${DateTimeTypeDefinition}
     type User {
       login: String!
       id: ID!
 
       html_url: String!
-      url:  String!
+      url: String!
     }
     type Issue {
       url: String!
@@ -42,27 +42,28 @@ export const graphql = {
     DateTime: DateTimeResolver,
     Query: {
       hello: (_: any, args: { name: string }) => {
-        return `Hello ${args.name}`
+        return `Hello ${args.name}`;
       },
       ping: () => `pong`,
-      greetings: () => 'Hello from Yoga in a Bun app!',
-      greetingsOld: () => 'Hello from Yoga in a Bun app!',
+      greetings: () => "Hello from Yoga in a Bun app!",
+      greetingsOld: () => "Hello from Yoga in a Bun app!",
       issues: async (_, query) => {
-        let allIssues: any[] = []
-        const issues_iterator = api.paginate.iterator(api.rest.issues.listForRepo, Object.assign({}, query, {
-          owner: "postmanlabs",
-          repo: "postman-app-support",
-          per_page: 100,
-        }))
-    
+        let allIssues: any[] = [];
+        const issues_iterator = api.paginate.iterator(
+          api.rest.issues.listForRepo,
+          Object.assign({}, query, {
+            owner: "postmanlabs",
+            repo: "postman-app-support",
+            per_page: 100,
+          }),
+        );
+
         for await (const { data: issues } of issues_iterator) {
-          allIssues = allIssues.concat(issues)
+          allIssues = allIssues.concat(issues);
         }
 
-        console.log(allIssues[0])
-    
-        return allIssues
-      }
-    }
-  }
-}
+        return allIssues;
+      },
+    },
+  },
+};
