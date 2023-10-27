@@ -21,6 +21,7 @@
     "@elysiajs/html": "^0.7.3",
     "@elysiajs/swagger": "^0.7.3",
     "@elysiajs/trpc": "^0.7.0",
+    "@ngneat/falso": "^7.1.1",
     "@stricjs/router": "^5.0.3",
     "@stricjs/utils": "^1.5.7",
     "@trpc/client": "^10.40.0",
