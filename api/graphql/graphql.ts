@@ -41,14 +41,32 @@ export const graphql = {
       updated_at: DateTime!
     }
   
-    ${FRAGMENTS}
+    fragment IssueBody on Issue {
+      url: String
+      repository_url: String
+      labels_url: String
+      comments_url: String
+      events_url: String
+      html_url: String
+    }
   
     type Query {
+      """
+      Just say hello! Very simple.
+      """
       hello(name: String!): String!
+      """
+      Test for a valid response. The health-check.
+      """
       ping: String!
+      """
+      A less sophisticated way to say hello.
+      """
       greetings: String
       greetingsOld: String @deprecated
-
+      """
+      GitHub issues support!
+      """
       issues(labels: String, since: String): [Issue]!
     }
 
