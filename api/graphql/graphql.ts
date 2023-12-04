@@ -70,6 +70,10 @@ export const graphql = {
       issues(labels: String, since: String): [Issue]!
     }
 
+    type Mutation {
+      ping: String!
+    }
+
   `,
   resolvers: {
     DateTime: DateTimeResolver,
@@ -98,5 +102,8 @@ export const graphql = {
         return allIssues;
       },
     },
+    Mutation: {
+      ping: () => `pong`
+    }
   },
 };
