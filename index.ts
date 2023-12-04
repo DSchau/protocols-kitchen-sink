@@ -14,6 +14,7 @@ import { version } from "./api/version";
 const app = new Elysia({
   serve: {
     hostname: process.env.NODE_ENV === "production" ? "0.0.0.0" : "",
+    port: parseInt(process.env.PORT || '3000', 10)
   },
 })
   .state("version", 1)

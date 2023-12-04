@@ -1,6 +1,17 @@
 import { DateTimeResolver, DateTimeTypeDefinition } from "graphql-scalars";
 import { github as api } from "../../lib/github";
 
+const FRAGMENTS = `
+  fragment IssueBody on Issue {
+    url: String
+    repository_url: String
+    labels_url: String
+    comments_url: String
+    events_url: String
+    html_url: String
+  }
+`
+
 export const graphql = {
   typeDefs: /* GraphQL */ `
     ${DateTimeTypeDefinition}
@@ -29,6 +40,9 @@ export const graphql = {
       created_at: DateTime!
       updated_at: DateTime!
     }
+  
+    ${FRAGMENTS}
+  
     type Query {
       hello(name: String!): String!
       ping: String!
@@ -37,6 +51,7 @@ export const graphql = {
 
       issues(labels: String, since: String): [Issue]!
     }
+
   `,
   resolvers: {
     DateTime: DateTimeResolver,

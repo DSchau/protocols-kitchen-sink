@@ -3,6 +3,7 @@ import { Elysia, DecoratorBase } from "elysia";
 import { github } from "./github";
 import { ping } from './ping'
 import { version } from './version'
+import { summary } from './summary'
 import { users, getUser, updateUser, beforeHandle, getJwt, userSchema } from './users/'
 
 const router = (app: Elysia<string, DecoratorBase>) => {
@@ -10,6 +11,7 @@ const router = (app: Elysia<string, DecoratorBase>) => {
     .get('/ping', ping)
     .get('/version', version)
     .get('/gh', github)
+    .post('/gh/summary', summary)
     .group('/users', usersRouter => {
       return usersRouter
         .post('/jwt', getJwt)
